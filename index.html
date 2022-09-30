@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Practice</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="TMDB Movie Info Website"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="practiceMe.css">
+        <link  rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+        <meta name="google-site-verification" content="tVuH-DU4duEaf4yR0iimbwdeYjRHdakYStilKugNW0E" />
+    </head>
+
+        <body>
+
+            <!--Navbar-->
+            <header>
+                <a href="#" class="Showzone">
+                    <i class="bx bxs-movie"></i><span id="logo-text">ShowZone</span>
+                </a>
+
+                    <p id="p-home"><a href="#home">Home</a></p>
+                    <form class="form">
+                        <img class="close-search" alt="image" src="https://cdn-icons-png.flaticon.com/128/3917/3917203.png"/>
+                        <input type="text" placeholder="search something..." class="input-search" autocomplete="on">
+                        <button id="submit-btn"><img src="https://cdn-icons-png.flaticon.com/128/3917/3917061.png" alt="image"/></button>
+                    </form>
+                    <a class="imports">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="import-svg" viewBox="0 0 24 24"><path d="M4 6h16v2H4zm4 5h12v2H8zm5 5h7v2h-7z"></path></svg>
+                    </a>
+                      <p id="p-categories"><a href="#">Categories</a></p>
+                      
+                    
+
+                <a id="sign-in" href="#">Sign In</a>
+            </header>
+
+
+            <!-- main section -->
+            <main id="main">
+    
+                <section id="home" class="default-movies">
+                   <!-- movies per category display -->
+                </section>
+
+                <section id="searched-movies">
+                    <h3 id="search-header"></h3>
+                    <div id="searches" class="movies-array"></div>
+                </section>
+            </main>
+
+            
+
+            <section id="home"></section>
+            <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+            <script src="practiceMe.js"></script>
+        </body>
+    
+</html>
+
