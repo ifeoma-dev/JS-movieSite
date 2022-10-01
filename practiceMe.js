@@ -143,8 +143,7 @@ async function generateMovies() {
     .then((res) => res.json())
     .then((data) => {
         const results = data.results;
-        console.log(moviesSearched(results))
-      searches.innerHTML = moviesSearched(results);
+      searches.innerHTML = displayMovies(results);
     })
     .catch();
 }
