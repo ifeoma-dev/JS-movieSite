@@ -122,8 +122,78 @@ header p a:hover::before{
     width: 1.2rem;
 }
 
-.imports{
+#p-categories,
+#p-home{
+    display: block;
+}
+
+.cont-home-cat{
+    position: relative;
     display: none;
+}
+
+.imports{
+    padding: 1rem;
+}
+
+.top-arrow,
+.show-home-cat{
+    display: none;
+}
+
+.cont-home-cat:hover .import-svg{
+    fill: var(--primary-color);
+    cursor: pointer;
+}
+
+.cont-home-cat:hover .top-arrow{
+    display: block;
+    position: absolute;
+    width: 1.5rem;
+    height: 1.5rem;
+    top: 3.6rem;
+    left: 2.4rem;
+    z-index: 1980;
+    transform: rotate(45deg);
+    background: var(--primary-color);
+}
+
+.cont-home-cat:hover .show-home-cat{
+    display: block;
+    position: absolute;
+    padding: 5px;
+    top: 4rem;
+    left: 1.6rem;
+    z-index:2000;
+    border-radius: 7px;
+    background: var(--primary-color);
+    animation-fill-mode: forwards;
+}
+
+.show-home-cat ul{
+    background: var(--background-white);
+    list-style: none;
+    padding: .8rem .5rem;
+    padding-right: .9rem;
+    border: 1px solid var(--primary-color);
+    border-radius: 7px;
+    text-align: left;
+}
+
+.show-home-cat ul li{
+    background: var(--background-white);
+    font-size: 25px;
+    padding-left: 5px;
+    border-left: 3px solid var(--primary-color);
+    margin-top: 13px;
+}
+
+.show-home-cat ul li:first-of-type{
+    margin-top: 0;
+}
+
+.show-home-cat ul li a {
+    color: var(--background-black);
 }
 
 .import-svg{
@@ -133,6 +203,10 @@ header p a:hover::before{
     fill: #fff;
     /* transform: ; // added n svg file */
     /* -ms-filter: ; // added in svg file */
+}
+
+.show-home-cat ul li:hover a{
+    color: var(--primary-color);
 }
 
 #sign-in{
@@ -378,7 +452,7 @@ section h3{
         display: none;
     }
 
-    .imports{
+    .cont-home-cat{
         display: block;
     }
 
@@ -412,6 +486,21 @@ section h3{
         display: none;
     }
 
+    .top-arrow{
+        opacity: 0;
+    }
+
+    .cont-home-cat:hover{
+        position: static;
+    }
+
+    .cont-home-cat:hover .show-home-cat{
+        position: absolute;
+        width: 150px;
+        animation: side-navbar .3s;
+        animation-fill-mode: forwards;
+    }
+
     #movie-title{
         font-size: 40px;
     }
@@ -420,6 +509,18 @@ section h3{
         margin-top: -30px;
     }
 
+}
+
+@keyframes side-navbar {
+    0%{
+        left: 100%;
+        transform: translateX(0);
+    }
+
+    100%{
+        left: 100%;
+        transform: translateX(-100%);
+    }
 }
 
 @media screen and (max-width:600px) {
