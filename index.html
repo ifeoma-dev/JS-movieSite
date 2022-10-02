@@ -14,7 +14,7 @@
         <meta name="google-site-verification" content="tVuH-DU4duEaf4yR0iimbwdeYjRHdakYStilKugNW0E" />
     </head>
 
-        <body>
+        <body id="home">
 
             <!--Navbar-->
             <header>
@@ -51,12 +51,16 @@
             <!-- main section -->
             <main id="main">
     
-                <section id="home" class="default-movies">
+                <section class="default-movies">
                    <!-- movies per category display -->
                 </section>
 
                 <section id="searched-movies">
-                    <h3 id="search-header"></h3>
+                    <div class="movie-header-cont">
+                        <h3 id="search-header" class="header"></h3>
+                        <h4 class="header more-movies">More</h4>
+                        <svg class="arrow-right" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18 6h2v12h-2zm-8 5H4v2h6v5l6-6-6-6z"></path></svg>
+                      </div>
                     <div id="searches" class="movies-array"></div>
                 </section>
             </main>
