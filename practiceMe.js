@@ -74,7 +74,11 @@ function showMovies2(variable, text) {
   // set img element template literal to a function that returns
   const displayTemplate = `
         <section class="movie-section" id=${text}>
-          <h3 class="header">${text}</h3>
+          <div class="movie-header-cont">
+            <h3 class="header">${text}</h3>
+            <h4 class="header more-movies">More</h4>
+            <svg class="arrow-right" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18 6h2v12h-2zm-8 5H4v2h6v5l6-6-6-6z"></path></svg>
+          </div>
           <div class="movies-array">
             ${displayMovies(variable)}
           </div>
