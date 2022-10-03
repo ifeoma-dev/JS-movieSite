@@ -230,6 +230,7 @@ main{
 .default-movies{
     display: block;
     opacity: 1;
+    transition: opacity .5s;
 }
 
 #searched-movies{
@@ -278,9 +279,9 @@ section h3{
     transition: width .3s;
 }
 
-/* .more-movies:hover::after{
+.more-movies:hover::after{
     width: 100%;
-} */
+}
 
 .arrow-right{
     position: absolute;
@@ -497,18 +498,6 @@ section h3{
     overflow-y: scroll;
 }
 
-#more-cont{
-    position: absolute;
-    left: 100vh;
-    width: 100vh;
-    background: transparent;
-    padding: 2rem;
-    transition: left .5s;
-}
-
-.more-results{
-    display: grid;
-}
 
 @media screen and (max-width: 990px) {
     #p-home,
@@ -706,6 +695,14 @@ section h3{
         object-fit: cover;
         height: 200px;
         object-fit: contain;
+    }
+
+    .more-movies{
+        margin-top: 2rem;
+    }
+
+    .arrow-right{
+        top: 76%;
     }
 }
 

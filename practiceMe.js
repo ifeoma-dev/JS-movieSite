@@ -64,20 +64,21 @@ async function showMovies(endP, title) {
   await fetch(endP)
     .then((res) => res.json())
     .then((data) => {
+      console.log(data);
       const results = data.results;
       //   console.log(results);
-      showMovies2(results, title);
+      showMovies2(results, title, endP);
     });
 }
 
-function showMovies2(variable, text) {
+function showMovies2(variable, text, endPoint) {
   // create template literal to work with
   // set img element template literal to a function that returns
   const displayTemplate = `
         <section class="movie-section" id=${text}>
           <div class="movie-header-cont">
             <h3 class="header">${text}</h3>
-            <h4 class="header more-movies">More</h4>
+            <h4 class="header more-movies" id=${endPoint}>More</h4>
             <svg class="arrow-right" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18 6h2v12h-2zm-8 5H4v2h6v5l6-6-6-6z"></path></svg>
           </div>
           <div class="movies-array">
@@ -169,6 +170,25 @@ function addMultipleEvents(eventObject, targetElem) {
   });
 }
 
+// all movie thubmnail image events
+const imgEvents = {
+  click: imageOnclick,
+  mouseleave: mouseleaveEffect,
+};
+
+function imageOnclick(e) {
+  const div = e.target.nextElementSibling;
+  div.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function mouseleaveEffect(e) {
+  e.target.classList.remove('hover-image');
+  e.target.style.marginLeft = '0';
+  e.target.style.marginRight = '10px';
+}
+
+
 // document event listener
 document.addEventListener('mouseover', mouseoverEffect);
 
@@ -197,31 +217,11 @@ function mouseoverEffect(e) {
       movieVideos(event, targetMovieID);
     };
   }
-
-  if (e.target.classList.contains('more-movies')) {
-    e.target.onclick = function(){
-      console.log('hello');
-    }
-  }
 }
 
-// all movie thubmnail image events
-const imgEvents = {
-  click: imageOnclick,
-  mouseleave: mouseleaveEffect,
-};
 
-function imageOnclick(e) {
-  const div = e.target.nextElementSibling;
-  div.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-}
 
-function mouseleaveEffect(e) {
-  e.target.classList.remove('hover-image');
-  e.target.style.marginLeft = '0';
-  e.target.style.marginRight = '10px';
-}
+
 
 // gets videos associated with a movie
 async function movieVideos(e, idKey) {
@@ -247,14 +247,3 @@ async function movieVideos(e, idKey) {
       }
     });
 }
-
-// moreMoviesPrompt.forEach((moreMoviesPrompt)=> {
-//   moreMoviesPrompt.addEventListener('click', showMoreMovies);
-// })
-
-// function showMoreMovies() {
-//   const moreMoviesShow = document.querySelector('.more-cont'),
-//   moreMoviesDiv = document.querySelector('.more-results');
-//   defaultMovies.style.opacity = '0';
-//   moreMoviesShow.style.left = '0';
-// }
