@@ -37,6 +37,10 @@ $('#p-home').click(() => {
   location.reload();
 });
 
+$('#a-home').click(() => {
+  location.reload();
+});
+
 // display searched movies
 submitBtn.onclick = (e) => {
   e.preventDefault();
@@ -82,63 +86,73 @@ function showMovies2(variable, text, endPoint) {
             <svg class="arrow-right" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18 6h2v12h-2zm-8 5H4v2h6v5l6-6-6-6z"></path></svg>
           </div>
           <div class="movies-array">
-            ${displayMovies(variable)}
+            ${displayMovies(variable, text)}
           </div>
         </section>`;
 
   defaultMovies.innerHTML += displayTemplate;
 }
 
-function displayMovies(movies) {
+function displayMovies(movies, titleOfSearch) {
   let dataId = -1;
 
   let finalContent = '';
 
-  for (let i = 0; i < movies.length; i++) {
-    const currentMovie = movies[i];
+  if (movies.length === 0) {
+    titleOfSearch.textContent = 'No results.'
+    $('.more-movies').css('display', "none");
+    $('.arrow-right').css('display', 'none');
+    $('#searches').css('display', none);
+  } else {
 
-    if (currentMovie.poster_path) {
-      const posterPath = currentMovie.poster_path, // set up movie poster pt1
-        posterEndpoint = preThumbnailT + posterPath, // set up movie poster pt2
-        movieID = currentMovie.id,
-        released = currentMovie.release_date,
-        releaseDate = new Date(released),
-        nowDate = new Date(),
-        rating = currentMovie.vote_average,
-        movieInfo = currentMovie.overview;
-      movieTitle = currentMovie.title;
+    for (let i = 0; i < movies.length; i++) {
+      const currentMovie = movies[i];
+  
+      if (currentMovie.poster_path) {
+        const posterPath = currentMovie.poster_path, // set up movie poster pt1
+          posterEndpoint = preThumbnailT + posterPath, // set up movie poster pt2
+          movieID = currentMovie.id,
+          released = currentMovie.release_date,
+          releaseDate = new Date(released),
+          nowDate = new Date(),
+          rating = currentMovie.vote_average,
+          movieInfo = currentMovie.overview;
+        movieTitle = currentMovie.title;
+  
+        dataId++;
+        finalContent += `
+              <img src=${posterEndpoint} class="display-image" id=${movieID} data-id=${dataId} />
+              <div class="info-overlay">
+              <div class="info-display">
+                <svg class="close-info-display" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path></svg>
+                 <img class="movie-large" src=${posterEndpoint} id=${movieID} alt="image"/>
+                <div class="movie-rates">
+                  <button class='movie-prompt' id=${movieID}>Get Associated Videos</button>
+                </div>
+                <div class="movie-descrip">
+                    <div class="movie-title-wrapper">
+                        <h1 id="movie-title">${movieTitle}</h1>
+                        <div class="extra-info">
+                        <p>${
+                          releaseDate > nowDate
+                            ? `Releasing: ${released}`
+                            : `Released: ${released}`
+                        }</p>
+                            <p>Rating: ${rating}/10</p>
+                        </div>
+                    </div>
+                    <div class='movie-summary' >
+                      <p>${movieInfo}</p>
+                    </div>
+                </div>
+              </div>
+            </div>`;
+      }
+      }
+      return finalContent
+  }
 
-      dataId++;
-      finalContent += `
-            <img src=${posterEndpoint} class="display-image" id=${movieID} data-id=${dataId} />
-            <div class="info-overlay">
-            <div class="info-display">
-              <svg class="close-info-display" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path></svg>
-               <img class="movie-large" src=${posterEndpoint} id=${movieID} alt="image"/>
-              <div class="movie-rates">
-                <button class='movie-prompt' id=${movieID}>Get Associated Videos</button>
-              </div>
-              <div class="movie-descrip">
-                  <div class="movie-title-wrapper">
-                      <h1 id="movie-title">${movieTitle}</h1>
-                      <div class="extra-info">
-                      <p>${
-                        releaseDate > nowDate
-                          ? `Releasing: ${released}`
-                          : `Released: ${released}`
-                      }</p>
-                          <p>Rating: ${rating}/10</p>
-                      </div>
-                  </div>
-                  <div class='movie-summary' >
-                    <p>${movieInfo}</p>
-                  </div>
-              </div>
-            </div>
-          </div>`;
-    }
-    }
-    return finalContent
+  
 }
 
 async function generateMovies() {
@@ -149,7 +163,7 @@ async function generateMovies() {
     .then((res) => res.json())
     .then((data) => {
         const results = data.results;
-      searches.innerHTML = displayMovies(results);
+      searches.innerHTML = displayMovies(results, searchTitle);
     })
     .catch();
 }
