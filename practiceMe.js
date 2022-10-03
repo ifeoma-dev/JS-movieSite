@@ -13,6 +13,7 @@ const searches = document.querySelector('#searches'),
   largeMoviePoster = document.querySelector('#movie-large'),
   infoDisplay = document.querySelector('.info-display'),
   movieTitleWrapper = document.querySelector('.movie-title-wrapper'),
+  moreMoviesPrompt = document.querySelectorAll('.more-movies'),
   // movieTitleDisplay = document.querySelector('#movie-title'),
   submitBtn = document.querySelector('#submit-btn');
 
@@ -174,8 +175,8 @@ document.addEventListener('mouseover', mouseoverEffect);
 function mouseoverEffect(e) {
   if (e.target.classList.contains('display-image')) {
     e.target.classList.add('hover-image');
-    e.target.style.marginLeft = '15px';
-    e.target.style.marginRight = '12px';
+    e.target.style.marginLeft = '8px';
+    e.target.style.marginRight = '18px';
 
     addMultipleEvents(imgEvents, e.target);
   }
@@ -195,6 +196,12 @@ function mouseoverEffect(e) {
       console.log(targetMovieID);
       movieVideos(event, targetMovieID);
     };
+  }
+
+  if (e.target.classList.contains('more-movies')) {
+    e.target.onclick = function(){
+      console.log('hello');
+    }
   }
 }
 
@@ -241,22 +248,13 @@ async function movieVideos(e, idKey) {
     });
 }
 
-// function to get an element's siblings
-function getElementSiblings(el) {
-  let siblings = [];
+// moreMoviesPrompt.forEach((moreMoviesPrompt)=> {
+//   moreMoviesPrompt.addEventListener('click', showMoreMovies);
+// })
 
-  if (!el.parentNode) {
-    return siblings;
-  }
-
-  let sibling = el.parentNode.firstElementChild;
-
-  while (sibling) {
-    if (sibling.nodeType === 1 && sibling !== el) {
-      siblings.push(sibling);
-    }
-
-    sibling = sibling.nextElementSibling;
-    return siblings;
-  }
-}
+// function showMoreMovies() {
+//   const moreMoviesShow = document.querySelector('.more-cont'),
+//   moreMoviesDiv = document.querySelector('.more-results');
+//   defaultMovies.style.opacity = '0';
+//   moreMoviesShow.style.left = '0';
+// }

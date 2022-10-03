@@ -229,6 +229,7 @@ main{
 
 .default-movies{
     display: block;
+    opacity: 1;
 }
 
 #searched-movies{
@@ -494,6 +495,19 @@ section h3{
     font-size: 19px;
     font-family: poppins, serif;
     overflow-y: scroll;
+}
+
+#more-cont{
+    position: absolute;
+    left: 100vh;
+    width: 100vh;
+    background: transparent;
+    padding: 2rem;
+    transition: left .5s;
+}
+
+.more-results{
+    display: grid;
 }
 
 @media screen and (max-width: 990px) {
