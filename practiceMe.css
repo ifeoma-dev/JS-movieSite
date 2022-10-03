@@ -278,9 +278,9 @@ section h3{
     transition: width .3s;
 }
 
-.more-movies:hover::after{
+/* .more-movies:hover::after{
     width: 100%;
-}
+} */
 
 .arrow-right{
     position: absolute;
